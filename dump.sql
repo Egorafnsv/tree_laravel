@@ -1,4 +1,3 @@
-sh-4.4# cat dump_tree.sql 
 -- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
 --
 -- Host: localhost    Database: tree_app
@@ -108,7 +107,8 @@ DROP TABLE IF EXISTS `relations`;
 CREATE TABLE `relations` (
   `parent_id` int NOT NULL,
   `child_id` int NOT NULL,
-  UNIQUE KEY `relations_child_id_unique` (`child_id`)
+  UNIQUE KEY `relations_child_id_unique` (`child_id`),
+  CONSTRAINT `check_parent_child` CHECK ((`parent_id` <> `child_id`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -131,4 +131,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-12 21:24:40
+-- Dump completed on 2023-03-13 15:07:15
